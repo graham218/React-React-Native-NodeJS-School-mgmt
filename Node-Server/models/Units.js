@@ -1,10 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Units = sequelize.define("Units", {
-      firstName: {
+      unit_name: {
         type: DataTypes.STRING,
       }
     });
-
     return Units;
   };
   
