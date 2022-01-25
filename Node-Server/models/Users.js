@@ -6,6 +6,18 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: Sequelize.STRING,
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     isActive: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
@@ -21,22 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     isAdmin: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
   });
 
