@@ -35,16 +35,5 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
   });
-
-  Users.associate = (models) => {
-    Users.hasMany(models.Likes, {
-      onDelete: "cascade",
-    });
-
-    Users.hasMany(models.Posts, {
-      onDelete: "cascade",
-    });
-  };
-
   return Users;
 };
