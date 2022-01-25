@@ -6,13 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       full_name: {
         type: DataTypes.STRING,
       },
-      course: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      stage: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      date_of_birth: {
+        type: DataTypes.DATEONLY,
+        get: function() {
+          return moment.utc(this.getDataValue('date_of_birth')).format('YYYY-MM-DD');
+        }
       },
       phone_number: {
         type: DataTypes.STRING,
@@ -26,25 +24,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      total_fee_billed: {
+      total_salary_billed: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      total_fee_paid: {
+      total_salary_paid: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      fee_balance: {
+      salary_balance: {
         type: DataTypes.STRING,
         allowNull: false,
       }
     });
-
-    Lecturers.associate = (models) => {
-        Lecturers.hasMany(models.Lecturers, {
-          onDelete: "cascade",
-        });
-      };
     return Lecturers;
   };
   

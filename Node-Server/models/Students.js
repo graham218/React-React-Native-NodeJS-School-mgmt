@@ -14,6 +14,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      date_of_birth: {
+        type: DataTypes.DATEONLY,
+        get: function() {
+          return moment.utc(this.getDataValue('date_of_birth')).format('YYYY-MM-DD');
+        }
+      },
+      date_of_admission: {
+        type: DataTypes.DATEONLY,
+        get: function() {
+          return moment.utc(this.getDataValue('date_of_admission')).format('YYYY-MM-DD');
+        }
+      },
       phone_number: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -39,12 +51,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       }
     });
-
-    Students.associate = (models) => {
-        Students.hasMany(models.Users, {
-          onDelete: "cascade",
-        });
-      };
     return Students;
   };
   
