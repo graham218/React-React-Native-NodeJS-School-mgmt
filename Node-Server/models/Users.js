@@ -36,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Users.associate = (models) => {
-    Users.hasMany(models.Students, {
+    Users.hasOne(models.Students, {
       onDelete: "cascade",
     });
-    Users.hasMany(models.Lecturers, {
+    Users.hasOne(models.Lecturers, {
       onDelete: "cascade",
     });
   };
