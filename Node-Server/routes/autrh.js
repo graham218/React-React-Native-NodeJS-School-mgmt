@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
     password: req.body.password,
     isStudent: req.body.isStudent,
     isLec: req.body.isLec,
-    isAdmin: req.body.isAdmin,
+    isSuperUser: req.body.isSuperUser,
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
