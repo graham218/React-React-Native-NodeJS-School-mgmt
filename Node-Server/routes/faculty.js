@@ -1,4 +1,4 @@
-const Admin = require("../models/Admin");
+const Faculty = require("../models/Faculty");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -10,11 +10,11 @@ const router = require("express").Router();
 //CREATE
 
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newAdmin = new Admin(req.body);
+  const newFaculty = new Faculty(req.body);
 
   try {
-    const savedAdmin = await newAdmin.save();
-    res.status(200).json(savedAdmin);
+    const savedFaculty = await newFaculty.save();
+    res.status(200).json(savedFaculty);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -23,14 +23,14 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 //UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const updatedAdmin = await Admin.findByIdAndUpdate(
+    const updatedFaculty = await Faculty.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedAdmin);
+    res.status(200).json(updatedFaculty);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,28 +39,28 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 //DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await Admin.findByIdAndDelete(req.params.id);
-    res.status(200).json("This Admin has been deleted from the database...");
+    await Faculty.findByIdAndDelete(req.params.id);
+    res.status(200).json("This Faculty has been deleted from the database...");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET Admin
+//GET Faculty
 router.get("/find/:id", async (req, res) => {
   try {
-    const admin = await Admin.findById(req.params.id);
-    res.status(200).json(admin);
+    const faculty = await Faculty.findById(req.params.id);
+    res.status(200).json(faculty);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET ALL Admins
+//GET ALL Faculties
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
-      const admin = await Admin.find();
-      res.status(200).json(admin);
+      const faculty = await Faculty.find();
+      res.status(200).json(faculty);
     } catch (err) {
       res.status(500).json(err);
     }
