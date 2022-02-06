@@ -10,11 +10,11 @@ const router = require("express").Router();
 //CREATE
 
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newStudent = new Product(req.body);
+  const newStudent = new Students(req.body);
 
   try {
-    const savedProduct = await newProduct.save();
-    res.status(200).json(savedProduct);
+    const savedStudent = await newStudent.save();
+    res.status(200).json(savedStudent);
   } catch (err) {
     res.status(500).json(err);
   }
