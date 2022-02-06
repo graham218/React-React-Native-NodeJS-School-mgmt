@@ -1,4 +1,4 @@
-const FeePayment = require("../models/FeePayment");
+const FeeReceipt = require("../models/FeeReceipt");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -10,11 +10,11 @@ const router = require("express").Router();
 //CREATE
 
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newFeePayment = new FeePayment(req.body);
+  const newFeeReceipt = new FeeReceipt(req.body);
 
   try {
-    const savedFeePayment = await newFeePayment.save();
-    res.status(200).json(savedFeePayment);
+    const savedFeeReceipt = await newFeeReceiptt.save();
+    res.status(200).json(savedFeeReceipt);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -23,14 +23,14 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 //UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const updatedFeePayment = await Faculty.findByIdAndUpdate(
+    const updatedFeeReceipt = await FeeReceipt.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedFeePayment);
+    res.status(200).json(updatedFeeReceipt);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,28 +39,28 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 //DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await FeePayment.findByIdAndDelete(req.params.id);
-    res.status(200).json("This Fee Payment has been deleted from the database...");
+    await FeeReceipt.findByIdAndDelete(req.params.id);
+    res.status(200).json("This Fee Receipt has been deleted from the database...");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET FeePayment
+//GET Fee Receipts
 router.get("/find/:id", async (req, res) => {
   try {
-    const feePayment = await FeePayment.findById(req.params.id);
-    res.status(200).json(feePayment);
+    const feeReceipt = await FeeReceipt.findById(req.params.id);
+    res.status(200).json(feeReceipt);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET ALL Fee Payments
+//GET ALL Fee Receipts
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
-      const feePayment = await FeePayment.find();
-      res.status(200).json(feePayment);
+      const feeReceipt = await FeeReceipt.find();
+      res.status(200).json(feeReceipt);
     } catch (err) {
       res.status(500).json(err);
     }
