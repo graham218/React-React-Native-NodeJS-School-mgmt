@@ -1,4 +1,4 @@
-const Gender = require("../models/Gender");
+const LecturerUnits = require("../models/LecturerUnits");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -10,11 +10,11 @@ const router = require("express").Router();
 //CREATE
 
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newGender = new Gender(req.body);
+  const newLecturerUnits = new LecturerUnits(req.body);
 
   try {
-    const savedGender = await newGender.save();
-    res.status(200).json(savedGender);
+    const savedLecturerUnits = await newLecturerUnits.save();
+    res.status(200).json(savedLecturerUnits);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -23,14 +23,14 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 //UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const updatedGender = await Gender.findByIdAndUpdate(
+    const updatedLecturerUnits = await LecturerUnits.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedGender);
+    res.status(200).json(updatedLecturerUnits);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,28 +39,28 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 //DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await Gender.findByIdAndDelete(req.params.id);
-    res.status(200).json("This Gender has been deleted from the database...");
+    await LecturerUnits.findByIdAndDelete(req.params.id);
+    res.status(200).json("This Unit has been deleted from the database...");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET gender
+//GET units
 router.get("/find/:id", async (req, res) => {
   try {
-    const gender = await Gender.findById(req.params.id);
-    res.status(200).json(gender);
+    const units = await LecturerUnits.findById(req.params.id);
+    res.status(200).json(units);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//GET ALL Gender
+//GET ALL units
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
-      const gender = await Gender.find();
-      res.status(200).json(gender);
+      const lecturerUnits = await LecturerUnits.find();
+      res.status(200).json(lecturerUnits);
     } catch (err) {
       res.status(500).json(err);
     }
