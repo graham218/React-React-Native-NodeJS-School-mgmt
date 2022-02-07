@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
+router.post("/", verifyTokenAndAuthorization, async (req, res) => {
   const newmarks_yr1 = new marks_yr1(req.body);
 
   try {
@@ -21,7 +21,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updatedmarks_yr1 = await marks_yr1.findByIdAndUpdate(
       req.params.id,

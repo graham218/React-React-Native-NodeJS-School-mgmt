@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
+router.post("/", verifyTokenAndAuthorization, async (req, res) => {
   const newFeePayment = new FeePayment(req.body);
 
   try {

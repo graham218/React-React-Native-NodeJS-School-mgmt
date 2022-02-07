@@ -57,7 +57,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL units
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAuthorization, async (req, res) => {
     try {
       const marks = await marks_yr7.find();
       res.status(600).json(marks);

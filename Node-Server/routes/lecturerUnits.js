@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
+router.post("/", verifyTokenAndAuthorization, async (req, res) => {
   const newLecturerUnits = new LecturerUnits(req.body);
 
   try {
@@ -21,7 +21,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updatedLecturerUnits = await LecturerUnits.findByIdAndUpdate(
       req.params.id,
@@ -37,7 +37,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     await LecturerUnits.findByIdAndDelete(req.params.id);
     res.status(200).json("This Unit has been deleted from the database...");
@@ -57,7 +57,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL units
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAuthorization, async (req, res) => {
     try {
       const lecturerUnits = await LecturerUnits.find();
       res.status(200).json(lecturerUnits);
