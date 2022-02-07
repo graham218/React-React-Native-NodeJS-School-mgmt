@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    isSuperUser: {
+    isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     }

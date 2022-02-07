@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyTokenAndAdmin, async (req, res) => {
+router.post("/", verifyTokenAndAuthorization, async (req, res) => {
   const newNoticeBoard = new NoticeBoard(req.body);
 
   try {
@@ -21,7 +21,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updatedNoticeBoard = await NoticeBoard.findByIdAndUpdate(
       req.params.id,
@@ -57,7 +57,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //GET ALL notices
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAuthorization, async (req, res) => {
     try {
       const notice = await NoticeBoard.find();
       res.status(200).json(notice);
